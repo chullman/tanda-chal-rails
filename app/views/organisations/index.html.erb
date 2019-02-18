@@ -23,6 +23,7 @@
           <td><%= link_to 'Join', join_organisation_path(organisation), method: :put %></td>
         <% else %>
           <td><strong>(Your current organisation)</strong></td>
+          <td><%= link_to 'Leave', leave_organisation_path(organisation), method: :put %></td>
         <% end %>
         
       </tr>

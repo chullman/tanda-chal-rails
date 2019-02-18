@@ -6,6 +6,7 @@
     <tr>
       <td><strong><%= @userOrganisation.name %></strong></td>
       <td><%= link_to 'Edit', edit_organisation_path(@userOrganisation.id) %></td>
+      <td><%= link_to 'Leave', leave_organisation_path(@userOrganisation.id), method: :put %></td>
     </tr>
   <% end %>
 
