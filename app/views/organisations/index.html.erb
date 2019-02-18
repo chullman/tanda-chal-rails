@@ -18,7 +18,13 @@
         <td><%= organisation.hourly_rate %></td>
         <td><%= link_to 'Show', organisation %></td>
         <td><%= link_to 'Edit', edit_organisation_path(organisation) %></td>
-        <td><%= link_to 'Join', join_organisation_path(organisation), method: :put %></td>
+        
+        <% if (@userOrganisation.nil?) || !(organisation.id == @userOrganisation.id) %>
+          <td><%= link_to 'Join', join_organisation_path(organisation), method: :put %></td>
+        <% else %>
+          <td><strong>(Your current organisation)</strong></td>
+        <% end %>
+        
       </tr>
     <% end %>
   </tbody>

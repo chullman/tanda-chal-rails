@@ -5,6 +5,8 @@ class OrganisationsController < ApplicationController
   # GET /organisations.json
   def index
     @organisations = Organisation.all
+
+    @userOrganisation = Organisation.where(id: current_user.organisation_id).first
   end
 
   # GET /organisations/1

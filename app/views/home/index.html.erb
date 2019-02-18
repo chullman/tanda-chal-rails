@@ -1,6 +1,13 @@
 <% if user_signed_in?%>
   <% if current_user.organisation_id.nil?%>
     <p style="color: red">You aren't a member of any organisations.<br/>Join an existing one or create a new one.</p>
+  <% else %>
+    <h2>My Organisation:</h2>
+    <tr>
+      <td><strong><%= @userOrganisation.name %></strong></td>
+      <td><%= link_to 'Edit', edit_organisation_path(@userOrganisation.id) %></td>
+    </tr>
   <% end %>
+
    <h3><%= link_to "List organisations or create a new organisation", organisations_path %></h3>
 <% end %>
