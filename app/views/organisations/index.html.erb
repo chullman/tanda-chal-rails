@@ -18,7 +18,7 @@
         <td><%= organisation.hourly_rate %></td>
         <td><%= link_to 'Show', organisation %></td>
         <td><%= link_to 'Edit', edit_organisation_path(organisation) %></td>
-        <td><%= link_to 'Join', join_organisation_path(organisation), method: :post %></td>
+        <td><%= link_to 'Join', join_organisation_path(organisation), method: :put %></td>
       </tr>
     <% end %>
   </tbody>

@@ -21,6 +21,18 @@ class OrganisationsController < ApplicationController
   def edit
   end
 
+  def join
+    @user = User.find_by(id: current_user.id)
+
+    if @user.update(user_params)
+      @user.update(organisation_id: params[:id])
+    end
+
+    
+
+    redirect_to :root
+  end
+
   # POST /organisations
   # POST /organisations.json
   def create
@@ -62,6 +74,11 @@ class OrganisationsController < ApplicationController
   end
 
   private
+
+  def user_params
+    params.permit(:organisation_id)
+  end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_organisation
       @organisation = Organisation.find(params[:id])
