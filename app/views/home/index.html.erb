@@ -1,6 +1,6 @@
 <% if user_signed_in?%>
   <% if current_user.organisation_id.nil?%>
-    <p>You aren't a member of any organisations.<br/>Join an existing one or create a new one.</p>
+    <p style="color: red">You aren't a member of any organisations.<br/>Join an existing one or create a new one.</p>
   <% end %>
-   <%= link_to "List organisations", organisations_path %>
+   <h3><%= link_to "List organisations or create a new organisation", organisations_path %></h3>
 <% end %>
