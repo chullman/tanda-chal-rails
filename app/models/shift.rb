@@ -1,7 +1,7 @@
 class Shift < ApplicationRecord
-  belongs_to :User
+  belongs_to :User, optional: true
 
-  validate :validate_user_id
+  validate :validate_user_id, if: :user_id?
 
   private
 

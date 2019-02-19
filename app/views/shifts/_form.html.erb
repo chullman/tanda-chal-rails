@@ -9,29 +9,8 @@
       <% end %>
       </ul>
     </div>
+  <% else %>
+    <h1>New Shift Created!</h1>
   <% end %>
 
-  <div class="field">
-    <%= form.label :start %>
-    <%= form.datetime_select :start %>
-  </div>
-
-  <div class="field">
-    <%= form.label :finish %>
-    <%= form.datetime_select :finish %>
-  </div>
-
-  <div class="field">
-    <%= form.label :break_length %>
-    <%= form.number_field :break_length %>
-  </div>
-
-  <div class="field">
-    <%= form.label :User_id %>
-    <%= form.text_field :User_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>

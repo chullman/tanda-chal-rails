@@ -14,7 +14,7 @@
       
       <% @allUsersAtOrganisation.each do |userAtOrganisation| %>
 
-      <h3>Employee: <%= userAtOrganisation.name %></h3>
+      <h3>Shifts for Employee: <%= userAtOrganisation.name %></h3>
       <table border="1">
         <thead>
           <tr>
@@ -32,7 +32,7 @@
         <% @shiftsForAllUsersAtOrg[userAtOrganisation.id].each do |shiftForAUser| %> <!-- For each shift for a particular user -->
           <tr>
           
-            <td><%= ActiveSupport::TimeZone.new(@timezone).parse(shiftForAUser.start.to_s).strftime("%m-%d-%Y") %></td>
+            <td><%= ActiveSupport::TimeZone.new(@timezone).parse(shiftForAUser.start.to_s).strftime("%d-%m-%Y") %></td>
             <td><%= ActiveSupport::TimeZone.new(@timezone).parse(shiftForAUser.start.to_s).strftime("%I:%M %p") %></td>
             <td><%= ActiveSupport::TimeZone.new(@timezone).parse(shiftForAUser.finish.to_s).strftime("%I:%M %p") %></td>
             <td><%= shiftForAUser.break_length %></td>
@@ -40,7 +40,63 @@
             <td><%= ((((ActiveSupport::TimeZone.new(@timezone).parse(shiftForAUser.finish.to_s).to_time - ActiveSupport::TimeZone.new(@timezone).parse(shiftForAUser.start.to_s).to_time) / 3600) - (shiftForAUser.break_length.to_d / 60)) * @userOrganisation.hourly_rate).round(2) %></td>
           </tr>
         <% end %>
-            
+
+        <% if userAtOrganisation.id == current_user.id %>
+          <tr>
+
+            <%= form_with(model: @shift, local: true) do |form| %>
+              <% if @shift.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(@shift.errors.count, "error") %> prohibited this shift from being saved:</h2>
+
+                  <ul>
+                  <% @shift.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                  </ul>
+                </div>
+              <% end %>
+
+              <td>
+              </td>
+
+              <td>
+              <div class="field">
+                <%= form.label :start %>
+                <%= form.datetime_select :start %>
+              </div>
+              </td>
+
+              <td>
+              <div class="field">
+                <%= form.label :finish %>
+                <%= form.datetime_select :finish %>
+              </div>
+              </td>
+
+              <td>
+              <div class="field">
+                <%= form.label :break_length %>
+                <%= form.number_field :break_length, :value => 0 %>
+              </div>
+              </td>
+
+              <td>
+              </td>
+
+              <td>
+              </td>
+
+              <td>
+              <div class="actions">
+                <%= form.submit %>
+              </div>
+              </td>
+
+            <% end %>
+
+          </tr>
+        <% end %>    
         
       </tbody>
 

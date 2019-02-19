@@ -4,6 +4,8 @@ class HomeController < ApplicationController
 
     @timezone = "Brisbane"
 
+    @shift = Shift.new
+
     if (user_signed_in?)
       @userOrganisation = Organisation.where(id: current_user.organisation_id).first
 
