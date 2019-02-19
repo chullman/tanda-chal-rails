@@ -31,10 +31,13 @@
         
         <% @shiftsForAllUsersAtOrg[userAtOrganisation.id].each do |shiftForAUser| %> <!-- For each shift for a particular user -->
           <tr>
-            <td><%= %></td>
+          
+            <td><%= ActiveSupport::TimeZone["Brisbane"].parse(shiftForAUser.start.to_s).utc.to_date.strftime("%m-%d-%Y")[0..-1] %></td>
             <td><%= shiftForAUser.start %></td>
             <td><%= shiftForAUser.finish %></td>
-            <td><%= shiftForAUser.breaklength %></td>
+            <td><%= shiftForAUser.break_length %></td>
+            <td><%= shiftForAUser.finish - shiftForAUser.start %></td>
+            <td><%= (shiftForAUser.finish - shiftForAUser.start) * @userOrganisation.hourly_rate %></td>
           </tr>
         <% end %>
             
