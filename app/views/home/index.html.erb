@@ -4,11 +4,53 @@
   <% else %>
     <h2>My Organisation:</h2>
     <tr>
-      <td><strong><%= @userOrganisation.name %></strong></td>
-      <td><%= link_to 'Edit', edit_organisation_path(@userOrganisation.id) %></td>
-      <td><%= link_to 'Leave', leave_organisation_path(@userOrganisation.id), method: :put %></td>
+      <td><h3><%= @userOrganisation.name %></h3></td>
+      <td><%= link_to 'Edit Organisation', edit_organisation_path(@userOrganisation.id) %></td>
+      <td><%= link_to 'Leave Organisation', leave_organisation_path(@userOrganisation.id), method: :put %></td>
     </tr>
+
+    <h3>Shifts at <%= @userOrganisation.name %></h3>
+
+      
+      <% @allUsersAtOrganisation.each do |userAtOrganisation| %>
+
+      <h3>Employee: <%= userAtOrganisation.name %></h3>
+      <table border="1">
+        <thead>
+          <tr>
+            <th>Shift date</th>
+            <th>Start time</th>
+            <th>Finish time</th>
+            <th>Break length (minutes)</th>
+            <th>Hours worked</th>
+            <th>Shift cost</th>
+          </tr>
+        </thead>
+
+      <tbody>
+        
+        <% @shiftsForAllUsersAtOrg[userAtOrganisation.id].each do |shiftForAUser| %> <!-- For each shift for a particular user -->
+          <tr>
+            <td><%= %></td>
+            <td><%= shiftForAUser.start %></td>
+            <td><%= shiftForAUser.finish %></td>
+            <td><%= shiftForAUser.breaklength %></td>
+          </tr>
+        <% end %>
+            
+        
+      </tbody>
+
+      </table>
+
+      <% end %>
+      
+    
+    
   <% end %>
 
-   <h3><%= link_to "List organisations or create a new organisation", organisations_path %></h3>
+  
+
+  <h3><%= link_to "List organisations or create a new organisation", organisations_path %></h3>
+
 <% end %>
