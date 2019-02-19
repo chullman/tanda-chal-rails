@@ -1,13 +1,17 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'registrations' }
+
+  get '/users/sign_out', to: 'devise/sessions#destroy'
+  get '/users/password', to: 'devise/passwords#update'
+
   
   resources :shifts, only: [:show, :create]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  get '/organisations/:id/join', to: 'organisations#join_show', as: 'join_organisation_show'
+  get '/organisations/:id/join', to: 'organisations#join'
   put '/organisations/:id/join', to: 'organisations#join', as: 'join_organisation'
-  get '/organisations/:id/leave', to: 'organisations#join_leave', as: 'leave_organisation_show'
+  get '/organisations/:id/leave', to: 'organisations#join'
   put '/organisations/:id/leave', to: 'organisations#leave', as: 'leave_organisation'
   resources :organisations, except: :destroy
 

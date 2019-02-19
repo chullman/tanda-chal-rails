@@ -39,18 +39,7 @@ class OrganisationsController < ApplicationController
     redirect_to :root
   end
 
-  def join_show
-    @user = User.find_by(id: current_user.id)
 
-    if (@user.organisation_id.to_i != params[:id].to_i) #Prevents user from rejoining the organisation they're already a member of
-      if @user.update(user_params)
-        @user.update(organisation_id: params[:id])
-      end
-    end 
-
-    
-    redirect_to :root
-  end
 
   def leave
     @user = User.find_by(id: current_user.id)
@@ -65,18 +54,6 @@ class OrganisationsController < ApplicationController
     redirect_to :root
   end
 
-  def join_leave
-    @user = User.find_by(id: current_user.id)
-
-    
-    if @user.organisation_id.to_i == params[:id].to_i # Users can only leave an organisation that they are a member of
-      if @user.update(user_params)
-        @user.update(organisation_id: nil)
-      end
-    end
-
-    redirect_to :root
-  end
 
   # POST /organisations
   # POST /organisations.json
