@@ -23,7 +23,7 @@
             <th>Finish time</th>
             <th>Break length (minutes)</th>
             <th>Hours worked</th>
-            <th>Shift cost</th>
+            <th>Shift cost ($)</th>
           </tr>
         </thead>
 
@@ -32,12 +32,12 @@
         <% @shiftsForAllUsersAtOrg[userAtOrganisation.id].each do |shiftForAUser| %> <!-- For each shift for a particular user -->
           <tr>
           
-            <td><%= ActiveSupport::TimeZone["Brisbane"].parse(shiftForAUser.start.to_s).utc.to_date.strftime("%m-%d-%Y")[0..-1] %></td>
-            <td><%= shiftForAUser.start %></td>
-            <td><%= shiftForAUser.finish %></td>
+            <td><%= ActiveSupport::TimeZone.new(@timezone).parse(shiftForAUser.start.to_s).strftime("%m-%d-%Y") %></td>
+            <td><%= ActiveSupport::TimeZone.new(@timezone).parse(shiftForAUser.start.to_s).strftime("%I:%M %p") %></td>
+            <td><%= ActiveSupport::TimeZone.new(@timezone).parse(shiftForAUser.finish.to_s).strftime("%I:%M %p") %></td>
             <td><%= shiftForAUser.break_length %></td>
-            <td><%= shiftForAUser.finish - shiftForAUser.start %></td>
-            <td><%= (shiftForAUser.finish - shiftForAUser.start) * @userOrganisation.hourly_rate %></td>
+            <td><%= (((ActiveSupport::TimeZone.new(@timezone).parse(shiftForAUser.finish.to_s).to_time - ActiveSupport::TimeZone.new(@timezone).parse(shiftForAUser.start.to_s).to_time) / 3600) - (shiftForAUser.break_length.to_d / 60)).round(2) %></td>
+            <td><%= ((((ActiveSupport::TimeZone.new(@timezone).parse(shiftForAUser.finish.to_s).to_time - ActiveSupport::TimeZone.new(@timezone).parse(shiftForAUser.start.to_s).to_time) / 3600) - (shiftForAUser.break_length.to_d / 60)) * @userOrganisation.hourly_rate).round(2) %></td>
           </tr>
         <% end %>
             

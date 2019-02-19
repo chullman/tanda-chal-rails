@@ -1,6 +1,9 @@
 class HomeController < ApplicationController
 
   def index
+
+    @timezone = "Brisbane"
+
     if (user_signed_in?)
       @userOrganisation = Organisation.where(id: current_user.organisation_id).first
 
