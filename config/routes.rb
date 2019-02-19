@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'registrations' }
 
-  get '/users/sign_out', to: 'devise/sessions#destroy'
-  get '/users/password', to: 'devise/passwords#update'
+  devise_scope :user do
+    get '/users/sign_out', to: 'devise/sessions#destroy'
+    get '/users/password', to: 'devise/passwords#update'
+  end
+ 
 
   
   resources :shifts, only: [:show, :create]
