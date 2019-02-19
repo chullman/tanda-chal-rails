@@ -34,8 +34,8 @@
         <% end %>
       </div>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <h3 style="color: green"><%= notice %></h3>
+    <h3 style="color: red"><%= alert %></h3>
 
     <% if user_signed_in?%>
       <p>Logged in as <%= current_user.name %></p>
