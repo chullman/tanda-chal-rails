@@ -17,8 +17,8 @@ The resulting product of this challenge, "Adnat", was developed as an assignment
 
 1. In cmd, run "bundle"
 2. Setup Figaro for environment variable setup
-  (a) In cmd, run "bundle exec figaro install"
-  (b) In the resulting "config/application.yml" file, enter the following, substituting in your values
+  2. (a) In cmd, run "bundle exec figaro install"
+  2. (b) In the resulting "config/application.yml" file, enter the following, substituting in your values
 
     development:
       database: "tanda-chal-dev"
@@ -31,7 +31,7 @@ The resulting product of this challenge, "Adnat", was developed as an assignment
 
 (**IMPORTANT:** If using Gmail as your email sender, remember to change Google account security settings to allow insecure apps)
 
-3. In cmd, run:
+5. In cmd, run:
     rails db:create RAILS_ENV=development
 
     rails db:migrate
