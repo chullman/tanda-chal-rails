@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   get '/organisations/:id/join', to: 'organisations#join'
   put '/organisations/:id/join', to: 'organisations#join', as: 'join_organisation'
-  get '/organisations/:id/leave', to: 'organisations#join'
+  get '/organisations/:id/leave', to: 'organisations#leave'
   put '/organisations/:id/leave', to: 'organisations#leave', as: 'leave_organisation'
   resources :organisations, except: :destroy
 
