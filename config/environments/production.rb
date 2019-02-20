@@ -69,7 +69,8 @@ Rails.application.configure do
   config.action_mailer.default(from: "tanda-chal-rails@heroku.com")
   config.action_mailer.default_url_options = { :host => 'https://tanda-chal-rails.herokuapp.com' } 
   config.action_mailer.perform_deliveries = true 
-  ActionMailer::Base.smtp_settings = { 
+  ActionMailer::Base.smtp_settings = {
+    :from => "tanda-chal-rails@heroku.com",
     :address => 'smtp.sendgrid.net', 
     :port => '587', 
     :authentication => :plain, 
