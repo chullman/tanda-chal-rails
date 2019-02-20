@@ -16,7 +16,7 @@ The resulting product of this challenge, "Adnat", was developed as an assignment
 (**Requirements:** Postgresql server, most likely running locally)
 
 1. In cmd, run "bundle"
-2. Setup Figaro for environment variable setup
+2. Setup Figaro for environment variable setup:
   2. (a) In cmd, run "bundle exec figaro install"
   2. (b) In the resulting "config/application.yml" file, enter the following, substituting in your values
 
