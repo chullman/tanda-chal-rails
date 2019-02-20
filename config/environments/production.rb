@@ -66,7 +66,7 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   config.action_mailer.raise_delivery_errors = true 
-  config.action_mailer.default(from: "tanda-chal-rails@heroku.com")
+  config.action_mailer.default_options = {from: "tanda-chal-rails@heroku.com"}
   config.action_mailer.default_url_options = { :host => 'https://tanda-chal-rails.herokuapp.com' } 
   config.action_mailer.perform_deliveries = true 
   ActionMailer::Base.smtp_settings = {
